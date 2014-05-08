@@ -89,6 +89,20 @@ package com.qupy.tools
 		}
 		
 		/**
+		 * 已知角度，取得該角度的行進方向變量
+		 * val1 : 物件的角度
+		 * val2 : 速度基值
+		 **/
+		public static function getAngelMove(val1:Number, val2:int):Object
+		{
+			var angel 	: Number = val1 ; 
+			var speed 	: Number = val2 ; 
+			var tx		: Number = speed * Math.cos(angel * Math.PI / 180);
+			var ty 		: Number = speed * Math.sin(angel * Math.PI / 180);
+			return {x:tx, y:ty};
+		}
+		
+		/**
 		 * 計算物件的圓形軌跡
 		 * p1 : 物件的座標
 		 * p2 : 圓心的座標
@@ -106,6 +120,15 @@ package com.qupy.tools
 			 var y2		: Number	= Math.cos(q) * y1 + Math.sin(q) * x1 ; 
 			 var tmpP	: Point		= new Point((pb.x + x2), (pb.y + y2));
 			 return tmpP ; 		 
+		 }
+		 
+		 /**
+		  * 求兩點之間的距離
+		  **/
+		 public static function getDistance(p1:Point, p2:Point):Number
+		 {
+			 var tmpdis : Number = Math.sqrt(Math.pow((p1.x - p2.x), 2) + Math.pow((p1.y - p2.y), 2));
+			 return tmpdis ; 
 		 }
 	}
 }

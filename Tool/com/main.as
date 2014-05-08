@@ -4,8 +4,9 @@
 	
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.geom.Point;
-
+	
 	public class main extends MovieClip
 	{
 		private var _this	 : MovieClip ; 
@@ -21,14 +22,34 @@
 			trace('最大公約數=' + Mathematics.getHCF(30,6,9,12,15,18,21,24,27,33,36));
 			trace('隨機取得值=' + Mathematics.getRandomVal([30,6,9,12,15,18,21,24,27,33,36]));
 			trace('重新排列陣列=' + Mathematics.getRandomArray([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]));
-		
+			trace('兩點之間的距離=' + Mathematics.getDistance(new Point(_this.obj.x, _this.obj.y), new Point(_this.mouseX, _this.mouseY)));
+			
 			_this.addEventListener(Event.ENTER_FRAME, moveHandler);
+			_this.stage.addEventListener(MouseEvent.MOUSE_DOWN, walkHandler);
+		}
+		
+		private function walkHandler(ev:Event):void
+		{
+			
+			if (ev.type == Event.ENTER_FRAME)
+			{
+				_this.obj.x += _this.obj.mx ; 
+				_this.obj.y += _this.obj.my ; 
+			}
+			else if (ev.type == MouseEvent.MOUSE_DOWN)
+			{
+				var tmpObj : Object = Mathematics.getAngelMove(_this.obj.rotation, 30);
+				_this.obj.mx = tmpObj.x ; 
+				_this.obj.my = tmpObj.y ; 
+				_this.addEventListener(Event.ENTER_FRAME, walkHandler);
+				_this.removeEventListener(Event.ENTER_FRAME, moveHandler);
+			}			
 		}
 		
 		private function moveHandler(ev:Event):void
 		{
 			//取得兩點之間的角度
-			//_this.obj.rotation = Mathematics.getRotation(new Point(_this.obj.x, _this.obj.y), new Point(_this.mouseX, _this.mouseY));
+			_this.obj.rotation = Mathematics.getRotation(new Point(_this.obj.x, _this.obj.y), new Point(_this.mouseX, _this.mouseY));
 			
 			//計算物件的圓形軌跡
 			/*_val ++ ; 			
