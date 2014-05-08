@@ -18,6 +18,8 @@
 			
 			_this = this ; 
 			
+			//改變物件顏色
+			Behavior.changeColor(_this.obj, 0xff000);
 			
 			trace('最大公約數=' + Mathematics.getHCF(30,6,9,12,15,18,21,24,27,33,36));
 			trace('隨機取得值=' + Mathematics.getRandomVal([30,6,9,12,15,18,21,24,27,33,36]));
