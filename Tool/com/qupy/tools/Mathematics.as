@@ -44,5 +44,34 @@ package com.qupy.tools
 			
 			return tmpInt ;
 		}	
+		
+		/**
+		 * 隨機取陣列中的值
+		 **/
+		public static function getRandomVal(arr:Array):*
+		{
+			var tmpArr : Array 	= arr.slice() ;
+			var ranVal : int 	= int(Math.random() * tmpArr.length);
+			return tmpArr[ranVal] ;
+		}
+		
+		/**
+		 * 將陣列重新排列
+		 **/
+		public static function getRandomArray(arr:Array):Array
+		{
+			var tmpArr 	: Array = arr.slice() ; 
+			var tmpArr2	: Array = [] ; 
+			var i		: int  ; 
+			var tmpLen 	: int 	= tmpArr.length ; 
+			
+			for (i = 0 ; i < tmpLen ; i++)
+			{
+				var tmpVal : int = int(Math.random() * tmpArr.length) ; 
+				tmpArr2.push(tmpArr[tmpVal]);
+				tmpArr.splice(tmpVal, 1);
+			}			
+			return tmpArr2 ; 
+		}
 	}
 }
