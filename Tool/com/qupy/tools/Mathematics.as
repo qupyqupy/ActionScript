@@ -73,5 +73,39 @@ package com.qupy.tools
 			}			
 			return tmpArr2 ; 
 		}
+		
+		/**
+		 * 取得兩點之間的角度
+		 **/
+		public static function getRotation(p1:Point, p2:Point):Number
+		{
+			var pa 	: Point 	= p1;
+			var pb 	: Point 	= p2;
+			var dx	: Number 	= pb.x - pa.x;
+			var dy	: Number	= pb.y - pa.y;
+			var drot: Number	= Math.atan2(dy,dx);
+			var wrot: Number	= drot / Math.PI * 180;
+			return wrot ;
+		}
+		
+		/**
+		 * 計算物件的圓形軌跡
+		 * p1 : 物件的座標
+		 * p2 : 圓心的座標
+		 * quality : 品質（越高越好）
+		 **/
+		 public static function getCircularTrack(p1:Point, p2:Point, quality:Number = 100):Point
+		 {
+			 var pa 	: Point 	= p1;
+			 var pb 	: Point 	= p2;
+			 var q		: Number 	= quality;
+			 
+			 var x1		: Number	= pa.x - pb.x ; 
+			 var y1		: Number	= pa.y - pb.y ; 
+			 var x2		: Number	= Math.cos(q) * x1 - Math.sin(q) * y1 ; 
+			 var y2		: Number	= Math.cos(q) * y1 + Math.sin(q) * x1 ; 
+			 var tmpP	: Point		= new Point((pb.x + x2), (pb.y + y2));
+			 return tmpP ; 		 
+		 }
 	}
 }
