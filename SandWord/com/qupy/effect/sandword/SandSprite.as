@@ -12,6 +12,8 @@
 	
 	public class SandSprite extends Sprite
 	{
+		private const SIDE		: int			= 500 ;
+		
 		private var _this 		: Sprite ; 	
 		private var _graphics	: Shape 		= new Shape(); 
 		
@@ -64,7 +66,7 @@
 				Math.abs(_this.y - _this.parent.mouseY) < _range)
 			{
 				_this.removeEventListener(Event.ENTER_FRAME, touchHandler)
-				TweenMax.to(_this, _sec-1, {onComplete:backHandler, bezier:[], x:Math.random() * _this.stage.stageWidth - (_this.stage.stageWidth / 2), y:Math.random() * _this.stage.stageHeight - (_this.stage.stageHeight / 2), ease:Sine.easeInOut});
+				TweenMax.to(_this, _sec-1, {onComplete:backHandler, bezier:[], x:_x + Math.random() * SIDE - (SIDE / 2), y:_y + Math.random() * SIDE - (SIDE / 2), ease:Sine.easeInOut});
 			}
 		}
 		
