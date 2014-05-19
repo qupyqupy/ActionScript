@@ -18,15 +18,15 @@
 		private var _grpahics	: Shape 	= new Shape();
 		
 		private var _type		: String 	= ''; 
-		private var _width		: Number	= 0 ; 
-		private var _height		: Number	= 0 ; 
+		private var _width		: Number	= 1 ; 
+		private var _height		: Number	= 1 ; 
 		private var _thickness	: Number ; 
 		private var _lineColor	: uint ; 
 		private var _fillColor	: uint ; 
 		private var _angel		: Number ; 
 		private var _pan		: Number ; 
 		
-		public function Polygon(thickness:Number, lineColor:uint, fillColor:uint, angel:Number = 20, pan:Number = 5):void
+		public function Polygon(thickness:Number, lineColor:uint, fillColor:uint, type:String = null, angel:Number = 20, pan:Number = 5):void
 		{
 			super();
 			
@@ -36,6 +36,7 @@
 			_fillColor	= fillColor ; 
 			_angel		= angel ; 
 			_pan		= pan ; 
+			_type		= type ; 
 			
 			initUI();
 		}
@@ -43,6 +44,11 @@
 		private function initUI():void
 		{
 			_this.addChild(_grpahics);
+			
+			if (_type != '')
+			{
+				reSize();
+			}
 		}
 		
 		private function reSize():void

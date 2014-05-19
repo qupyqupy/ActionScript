@@ -20,10 +20,10 @@
 		
 		private function init():void
 		{
-			var tmp : Polygon = new Polygon(0.1, 0x123456, 0x987654);
-			tmp.pan = 50 ; 
-			tmp.draw(Polygon.PARALLELOGRAM, 300, 200);
+			var tmp : Polygon = new Polygon(0.1, 0x123456, 0x987654, Polygon.PARALLELOGRAM);
 			
+			tmp.width = 200 ; 
+			tmp.height = 200 ; 
 			_this.addChild(tmp);
 			
 			_this.stage.addEventListener(MouseEvent.CLICK, clickHandler);
