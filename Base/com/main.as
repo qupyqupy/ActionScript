@@ -20,7 +20,7 @@
 		
 		private function init():void
 		{
-			var tmp : Polygon = new Polygon(0.1, 0x123456, 0x987654, Polygon.PARALLELOGRAM);
+			var tmp : Polygon = new Polygon(0.1, 0x123456, 0x987654, Polygon.PARALLELOGRAM, 20, 5, 0.7);
 			
 			tmp.width = 200 ; 
 			tmp.height = 200 ; 
@@ -30,7 +30,7 @@
 			
 			function clickHandler(ev:MouseEvent):void
 			{
-				tmp.width = 200 ; 
+				tmp.alpha = 0.1 ; 
 			}
 		}		
 	}

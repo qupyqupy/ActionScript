@@ -25,8 +25,9 @@
 		private var _fillColor	: uint ; 
 		private var _angel		: Number ; 
 		private var _pan		: Number ; 
+		private var _alpha 		: Number ; 
 		
-		public function Polygon(thickness:Number, lineColor:uint, fillColor:uint, type:String = null, angel:Number = 20, pan:Number = 5):void
+		public function Polygon(thickness:Number, lineColor:uint, fillColor:uint, type:String = null, angel:Number = 20, pan:Number = 5, alpha:Number = 1):void
 		{
 			super();
 			
@@ -36,6 +37,7 @@
 			_fillColor	= fillColor ; 
 			_angel		= angel ; 
 			_pan		= pan ; 
+			_alpha		= alpha ; 
 			_type		= type ; 
 			
 			initUI();
@@ -104,8 +106,8 @@
 			with(_grpahics.graphics)
 			{
 				clear();
-				lineStyle(_thickness, _lineColor);
-				beginFill(_fillColor);
+				lineStyle(_thickness, _lineColor, _alpha);
+				beginFill(_fillColor, _alpha);
 				drawEllipse(0, 0, _width, _height);
 				endFill();
 			}
@@ -116,8 +118,8 @@
 			with(_grpahics.graphics)
 			{
 				clear();
-				lineStyle(_thickness, _lineColor);
-				beginFill(_fillColor);
+				lineStyle(_thickness, _lineColor, _alpha);
+				beginFill(_fillColor, _alpha);
 				moveTo(0, 0);
 				lineTo(-(_width / 2), _height);
 				lineTo((_width / 2), _height);
@@ -131,8 +133,8 @@
 			with(_grpahics.graphics)
 			{
 				clear();
-				lineStyle(_thickness, _lineColor);
-				beginFill(_fillColor);
+				lineStyle(_thickness, _lineColor, _alpha);
+				beginFill(_fillColor, _alpha);
 				drawRect(0, 0, _width, _height);
 				endFill();
 			}
@@ -146,8 +148,8 @@
 			nAngle+=nAngleDelta;
 				
 			_grpahics.graphics.clear();
-			_grpahics.graphics.lineStyle(_thickness, _lineColor);
-			_grpahics.graphics.beginFill(_fillColor);
+			_grpahics.graphics.lineStyle(_thickness, _lineColor, _alpha);
+			_grpahics.graphics.beginFill(_fillColor, _alpha);
 			_grpahics.graphics.moveTo(point.x, point.y);
 			
 			for (var i : int = 0 ; i < 5 ; i++)
@@ -173,8 +175,8 @@
 			var point		: Point	 = new Point((Math.cos(rotat) * nRadius), (Math.sin(rotat) * nRadius));
 			
 			_grpahics.graphics.clear();
-			_grpahics.graphics.lineStyle(_thickness, _lineColor);
-			_grpahics.graphics.beginFill(_fillColor);
+			_grpahics.graphics.lineStyle(_thickness, _lineColor, _alpha);
+			_grpahics.graphics.beginFill(_fillColor, _alpha);
 			_grpahics.graphics.moveTo(point.x, point.y);
 			
 			for (var i : int = 1 ; i <= 5 ; i++)
@@ -193,8 +195,8 @@
 			with(_grpahics.graphics)
 			{
 				clear();
-				lineStyle(_thickness, _lineColor);
-				beginFill(_fillColor);
+				lineStyle(_thickness, _lineColor, _alpha);
+				beginFill(_fillColor, _alpha);
 				drawRoundRect(0, 0, _width, _height, _angel, _angel);
 				endFill();
 			}
@@ -205,8 +207,8 @@
 			with(_grpahics.graphics)
 			{
 				clear();
-				lineStyle(_thickness, _lineColor);
-				beginFill(_fillColor);
+				lineStyle(_thickness, _lineColor, _alpha);
+				beginFill(_fillColor, _alpha);
 				moveTo(_pan, 0);
 				lineTo(_width + _pan, 0);
 				lineTo(_width, _height);
@@ -260,6 +262,12 @@
 		{
 			_height = val ; 
 			reSize();
-		}		
+		}
+		
+		override public function set alpha(val:Number):void
+		{
+			_alpha = val ; 
+			reSize();
+		}
 	}
 }
